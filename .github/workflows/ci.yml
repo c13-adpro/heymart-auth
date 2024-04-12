@@ -17,6 +17,8 @@ jobs:
           distribution: "temurin"
           java-version: "21"
           cache: "gradle"
+      - name: Clean up the project
+        run: ./gradlew clean
       - name: Set gradlew as executable
         run: chmod +x ./gradlew
       - name: Run unit tests
