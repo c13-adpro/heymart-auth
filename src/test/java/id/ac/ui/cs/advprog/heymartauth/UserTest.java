@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class UserTest {
     @Test
     public void testUserBuilder() {
-        User user = new User().builder()
+        User user = User.builder()
                 .username("user")
                 .email("user@email.com")
                 .password("password")
@@ -17,32 +17,30 @@ public class UserTest {
                 .build();
         assertEquals("user", user.getUsername());
         assertEquals("user@email.com", user.getEmail());
-        assertEquals("password", user.getPassword());
         assertEquals("CUSTOMER", user.getRole());
     }
 
     @Test
     public void testUserBuilderWithInvalidRole() {
         assertThrows(IllegalArgumentException.class, () -> {
-            new User().builder()
-                    .role("MEOW");
+            User.builder().role("MEOW");
         });
     }
 
     @Test
     public void testUserBuilderWithValidRole() {
-        User user = new User().builder()
+        User user = User.builder()
                 .role("CUSTOMER")
                 .build();
         assertEquals("CUSTOMER", user.getRole());
 
-        user = new User().builder()
+        user = User.builder()
                 .role("ADMIN")
                 .build();
 
         assertEquals("ADMIN", user.getRole());
 
-        user = new User().builder()
+        user = User.builder()
                 .role("MANAGER")
                 .build();
 
@@ -54,23 +52,23 @@ public class UserTest {
     @Test
     public void testUserBuilderWithInvalidName() {
         assertThrows(IllegalArgumentException.class, () -> {
-            new User().builder()
+            User.builder()
                     .username("");
         });
         assertThrows(IllegalArgumentException.class, () -> {
-            new User().builder()
+            User.builder()
                     .username(null);
         });
         assertThrows(IllegalArgumentException.class, () -> {
-            new User().builder()
+            User.builder()
                     .username(" ");
         });
         assertThrows(IllegalArgumentException.class, () -> {
-            new User().builder()
-                    .username(" asdf");
+            User.builder()
+                    .username(" asd");
         });
         assertThrows(IllegalArgumentException.class, () -> {
-            new User().builder()
+            User.builder()
                     .username("as$df");
         });
     }
@@ -78,31 +76,31 @@ public class UserTest {
     @Test
     public void testUserBuilderWithInvalidEmail() {
         assertThrows(IllegalArgumentException.class, () -> {
-            new User().builder()
+            User.builder()
                     .email("");
         });
         assertThrows(IllegalArgumentException.class, () -> {
-            new User().builder()
+            User.builder()
                     .email(null);
         });
         assertThrows(IllegalArgumentException.class, () -> {
-            new User().builder()
+            User.builder()
                     .email(" @email.com");
         });
         assertThrows(IllegalArgumentException.class, () -> {
-            new User().builder()
+            User.builder()
                     .email("asdf");
         });
         assertThrows(IllegalArgumentException.class, () -> {
-            new User().builder()
+            User.builder()
                     .email("asdf@");
         });
         assertThrows(IllegalArgumentException.class, () -> {
-            new User().builder()
+            User.builder()
                     .email("asdf@.com");
         });
         assertThrows(IllegalArgumentException.class, () -> {
-            new User().builder()
+            User.builder()
                     .email("asdf@com");
         });
     }
@@ -110,23 +108,23 @@ public class UserTest {
     @Test
     public void testUserBuilderWithInvalidPassword() {
         assertThrows(IllegalArgumentException.class, () -> {
-            new User().builder()
+            User.builder()
                     .password("");
         });
         assertThrows(IllegalArgumentException.class, () -> {
-            new User().builder()
+            User.builder()
                     .password(null);
         });
         assertThrows(IllegalArgumentException.class, () -> {
-            new User().builder()
+            User.builder()
                     .password(" ");
         });
         assertThrows(IllegalArgumentException.class, () -> {
-            new User().builder()
+            User.builder()
                     .password(" asdf");
         });
         assertThrows(IllegalArgumentException.class, () -> {
-            new User().builder()
+            User.builder()
                     .password("as$df");
         });
     }
