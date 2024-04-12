@@ -1,3 +1,5 @@
+val junitJupiterVersion = "5.9.1"
+
 plugins {
 	java
 	id("org.springframework.boot") version "3.2.4"
@@ -35,8 +37,19 @@ dependencies {
 	annotationProcessor("org.projectlombok:lombok")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.springframework.security:spring-security-test")
+	testImplementation("org.junit.jupiter:junit-jupiter-api:$junitJupiterVersion")
+	testImplementation("org.junit.jupiter:junit-jupiter-engine:$junitJupiterVersion")
 }
 
-tasks.withType<Test> {
+
+tasks.register<Test>("unitTest") {
+	description = "Run unit tests."
+	group = "verification"
+	filter {
+		excludeTestsMatching("*FunctionalTest")
+	}
+}
+
+tasks.withType<Test>().configureEach {
 	useJUnitPlatform()
 }
