@@ -48,7 +48,7 @@ public class UserBuilder {
         if (role == null || role.isEmpty()) {
             throw new IllegalArgumentException("Role cannot be empty");
         }
-        if (!UserRoleEnum.contains(role)) {
+        if (!UserRole.contains(role)) {
             throw new IllegalArgumentException("Invalid role");
         }
         this.role = role;

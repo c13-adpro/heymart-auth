@@ -1,18 +1,18 @@
 package id.ac.ui.cs.advprog.heymartauth.model;
 
-public enum UserRoleEnum {
+public enum UserRole {
     ADMIN("ADMIN"),
     MANAGER("MANAGER"),
     CUSTOMER("CUSTOMER");
 
     private final String value;
 
-    UserRoleEnum(String value) {
+    UserRole(String value) {
         this.value = value;
     }
 
     public static boolean contains(String value) {
-        for (UserRoleEnum role : UserRoleEnum.values()) {
+        for (UserRole role : UserRole.values()) {
             if (role.value.equals(value)) {
                 return true;
             }
