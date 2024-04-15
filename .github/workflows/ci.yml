@@ -4,6 +4,11 @@ on:
   push:
   pull_request:
 
+env:
+  PG_HOST: ${{ secrets.PG_HOST }}
+  PG_USER: ${{ secrets.PG_USER }}
+  PG_PASS: ${{ secrets.PG_PASS }}
+
 jobs:
   test:
     name: Run tests
@@ -19,5 +24,7 @@ jobs:
           cache: "gradle"
       - name: Set gradlew as executable
         run: chmod +x ./gradlew
+      - name: Clean up the project
+        run: ./gradlew clean
       - name: Run unit tests
         run: ./gradlew test
