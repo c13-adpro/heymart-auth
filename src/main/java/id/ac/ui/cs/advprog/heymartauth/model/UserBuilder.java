@@ -45,11 +45,10 @@ public class UserBuilder {
     }
 
     public UserBuilder role(String role) {
-        final String[] validRoles = {"CUSTOMER", "ADMIN", "MANAGER"};
         if (role == null || role.isEmpty()) {
             throw new IllegalArgumentException("Role cannot be empty");
         }
-        if (!java.util.Arrays.asList(validRoles).contains(role)) {
+        if (!UserRoleEnum.contains(role)) {
             throw new IllegalArgumentException("Invalid role");
         }
         this.role = role;
