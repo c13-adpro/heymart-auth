@@ -1,12 +1,26 @@
 package id.ac.ui.cs.advprog.heymartauth;
 
 import id.ac.ui.cs.advprog.heymartauth.model.User;
+import id.ac.ui.cs.advprog.heymartauth.model.UserRole;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class UserTest {
+    private User mockUser;
+
+    @BeforeEach
+    public void setUp() {
+        mockUser = User.builder()
+                .email("user@email.com")
+                .password("password")
+                .role("CUSTOMER")
+                .build();
+    }
+
     @Test
     public void testUserBuilder() {
         User user = User.builder()
@@ -127,5 +141,35 @@ public class UserTest {
             User.builder()
                     .password("as$df");
         });
+    }
+
+    @Test
+    public void testUserDetailImplGetUsername() {
+        assertEquals("user@email.com", mockUser.getUsername());
+    }
+
+    @Test
+    public void testUserDetailImplGetAuthorities() {
+        assertEquals(List.of(), mockUser.getAuthorities());
+    }
+
+    @Test
+    public void testUserDetailImplIsAccountNonExpired() {
+        assertTrue(mockUser.isAccountNonExpired());
+    }
+
+    @Test
+    public void testUserDetailImplIsAccountNonLocked() {
+        assertTrue(mockUser.isAccountNonLocked());
+    }
+
+    @Test
+    public void testUserDetailImplIsEnabled() {
+        assertTrue(mockUser.isEnabled());
+    }
+
+    @Test
+    public void testUserDetailImplIsCredentialsNonExpired() {
+        assertTrue(mockUser.isCredentialsNonExpired());
     }
 }
