@@ -1,5 +1,6 @@
 package id.ac.ui.cs.advprog.heymartauth.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -30,13 +31,14 @@ public class User implements UserDetails {
     @Column(nullable = false)
     @Getter
     @Setter
+    @JsonIgnore
     private String password;
 
     @Column(nullable = false)
     @Getter
     @Setter
     private String role;
-
+    
     public static UserBuilder builder() {
         return new UserBuilder();
     }
