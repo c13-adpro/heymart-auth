@@ -29,7 +29,7 @@ public class UserTest {
                 .password("password")
                 .role("CUSTOMER")
                 .build();
-        assertEquals("user", user.getUsername());
+        assertEquals("user", user.getName());
         assertEquals("user@email.com", user.getEmail());
         assertEquals("CUSTOMER", user.getRole());
     }
